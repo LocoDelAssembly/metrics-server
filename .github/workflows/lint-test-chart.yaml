@@ -89,8 +89,13 @@ jobs:
       - name: Install cert-manager dependency
         if: steps.changes.outputs.changed == 'true'
         run: |
-          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-          helm install prometheus prometheus-community/prometheus
+          helm repo add jetstack https://charts.jetstack.io
+          helm install cert-manager jetstack/cert-manager \
+            --namespace cert-manager \
+            --create-namespace \
+            --wait \
+            --set installCRDs=true \
+            --set extraArgs='{--enable-certificate-owner-ref}'
 
       - name: Run chart-testing install
         if: steps.changes.outputs.changed == 'true'
