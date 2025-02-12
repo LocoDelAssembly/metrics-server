@@ -44,7 +44,7 @@ jobs:
           then
             echo "changed=true" >> "${GITHUB_OUTPUT}"
           else
-            echo "changed=false" >> "${GITHUB_OUTPUT}"
+            echo "changed=true" >> "${GITHUB_OUTPUT}"
           fi
 
       - name: Get chart version
