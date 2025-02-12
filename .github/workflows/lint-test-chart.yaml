@@ -86,6 +86,12 @@ jobs:
         with:
           wait: 120s
 
+      - name: Install cert-manager dependency
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+          helm install prometheus prometheus-community/prometheus
+
       - name: Run chart-testing install
         if: steps.changes.outputs.changed == 'true'
         run: ct install --namespace kube-system
