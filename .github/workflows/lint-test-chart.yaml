@@ -1,10 +1,9 @@
 name: Lint and Test Chart
 
 on:
-  pull_request:
-    paths:
-      - .github/workflows/lint-test-chart.yaml
-      - "charts/metrics-server/**"
+  push:
+    branches:
+      - master
 
 permissions:
   contents: read
